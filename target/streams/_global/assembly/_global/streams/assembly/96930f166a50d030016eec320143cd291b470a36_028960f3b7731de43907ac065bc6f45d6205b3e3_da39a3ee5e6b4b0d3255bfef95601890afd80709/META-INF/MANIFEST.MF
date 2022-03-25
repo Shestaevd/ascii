@@ -1,0 +1,46 @@
+Manifest-Version: 1.0
+Bundle-Description: Sonatype helps open source projects to set up Mave
+ n repositories on https://oss.sonatype.org/
+Bundle-License: http://www.opensource.org/licenses/bsd-license.php
+Bundle-SymbolicName: jline
+Archiver-Version: Plexus Archiver
+Built-By: gnodet
+Bnd-LastModified: 1464721603407
+Bundle-ManifestVersion: 2
+Import-Package: com.sun.jna;resolution:=optional,com.sun.jna.ptr;resol
+ ution:=optional,com.sun.jna.win32;resolution:=optional,org.fusesource
+ .jansi;version="[1.12,2)";resolution:=optional,org.fusesource.jansi.i
+ nternal;version="[1.6,2)";resolution:=optional,org.mozilla.universalc
+ hardet;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-2.4.1.201501161923
+Export-Package: org.jline.builtins;uses:="org.jline.keymap,org.jline.r
+ eader,org.jline.reader.impl.completer.completer,org.jline.terminal,or
+ g.jline.utils";version="3.0.0",org.jline.editor;version="3.0.0",org.j
+ line.keymap;uses:="org.jline.terminal,org.jline.utils";version="3.0.0
+ ",org.jline.reader;uses:="org.jline.keymap,org.jline.reader.impl,org.
+ jline.terminal,org.jline.utils";version="3.0.0",org.jline.reader.impl
+ ;uses:="org.jline.keymap,org.jline.reader,org.jline.terminal,org.jlin
+ e.utils";version="3.0.0",org.jline.reader.impl.completer.completer;us
+ es:="org.jline.reader,org.jline.terminal";version="3.0.0",org.jline.r
+ eader.impl.history.history;uses:="org.jline.reader";version="3.0.0",o
+ rg.jline.terminal;uses:="org.jline.utils";version="3.0.0",org.jline.t
+ erminal.impl;uses:="org.jline.terminal,org.jline.utils";version="3.0.
+ 0",org.jline.terminal.impl.jansi;uses:="org.jline.terminal,org.jline.
+ terminal.impl,org.jline.utils";version="3.0.0",org.jline.terminal.imp
+ l.jna;uses:="org.jline.terminal,org.jline.terminal.impl";version="3.0
+ .0",org.jline.terminal.impl.jna.freebsd;uses:="com.sun.jna,org.jline.
+ terminal,org.jline.terminal.impl.jna";version="3.0.0",org.jline.termi
+ nal.impl.jna.linux;uses:="com.sun.jna,org.jline.terminal,org.jline.te
+ rminal.impl.jna";version="3.0.0",org.jline.terminal.impl.jna.osx;uses
+ :="com.sun.jna,org.jline.terminal,org.jline.terminal.impl.jna";versio
+ n="3.0.0",org.jline.terminal.impl.jna.solaris;uses:="com.sun.jna,org.
+ jline.terminal,org.jline.terminal.impl.jna";version="3.0.0",org.jline
+ .terminal.impl.jna.win;uses:="com.sun.jna,org.jline.terminal,org.jlin
+ e.terminal.impl,org.jline.utils";version="3.0.0",org.jline.utils;uses
+ :="org.jline.terminal";version="3.0.0"
+Bundle-Name: JLine
+Bundle-Version: 3.0.0.M1
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_74
+
