@@ -17,9 +17,7 @@ object Image {
   def readImage(path: String): IO[BufferedImage] = ImageIO.read(new File(path)).pure[IO]
 
   def brightnessToAscii(asciiList: List[Char])(brightness: Int): IO[Char] = IO.fromTry(
-    Try {
-      asciiList((brightness / 255d * asciiList.length - 1).toInt)
-    }
+    Try (asciiList((brightness / 255d * asciiList.length - 1).toInt))
   )
 
   def toAsciiSequence(resizedImage: BufferedImage, config: Config): IO[List[List[Char]]] =
