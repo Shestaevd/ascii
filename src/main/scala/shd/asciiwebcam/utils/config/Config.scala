@@ -14,4 +14,4 @@ object Config {
 
 }
 
-case class Config(imagePath: String, defaultWidth: Int, brightness: List[Char] = "№@#W$9876543210?!abc;:+=-,._ ".toList)
+case class Config(imagePath: String, defaultWidth: Int, asciiSeq: List[Char] = "№@#W$9876543210?!abc;:+=-,._ ".toList)

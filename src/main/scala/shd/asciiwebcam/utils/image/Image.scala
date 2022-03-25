@@ -25,7 +25,7 @@ object Image {
   def toAsciiSequence(resizedImage: BufferedImage, config: Config): IO[List[List[Char]]] =
     (0 until resizedImage.getHeight map ( h =>
       0 until resizedImage.getWidth map ( w =>
-        getAvgColor _ andThen brightnessToAscii(config.brightness) apply new Color(resizedImage.getRGB(w, h)))
+        getAvgColor _ andThen brightnessToAscii(config.asciiSeq) apply new Color(resizedImage.getRGB(w, h)))
       )).map(_.toList.sequence).toList.sequence
 
 }
