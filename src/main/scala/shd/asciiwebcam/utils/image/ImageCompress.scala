@@ -74,6 +74,6 @@ object ImageCompress {
     newImage
   }
 
-  def compressTo(target: Int, bufferedImage: BufferedImage): IO[BufferedImage] = Scalr.resize(bufferedImage, Mode.FIT_TO_WIDTH, target).pure[IO]
+  def compressTo(width: Int, height: Int, bufferedImage: BufferedImage): IO[BufferedImage] = IO(Scalr.resize(bufferedImage, Mode.FIT_EXACT, width, height))
 
 }
