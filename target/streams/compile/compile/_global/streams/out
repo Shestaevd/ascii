@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/home/dmitry/IdeaProjects/ImagePlayground/src/main/scala/shd/asciiwebcam/functions/image/Image.scala:6:21: object opencv is not a member of package org.bytedeco[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.bytedeco.opencv.helper.opencv_imgcodecs[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
