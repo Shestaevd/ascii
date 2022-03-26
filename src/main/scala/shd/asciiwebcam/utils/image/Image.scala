@@ -24,10 +24,9 @@ object Image {
     webcam.getImage
   }
 
-  def brightnessToAscii(asciiList: List[Char], reverse: Boolean)(brightness: Int): IO[Char] = IO {
-    val rList = asciiList.<>(reverse)
-    rList((brightness / 255d * (asciiList.length - 1)).toInt)
-  }
+  def brightnessToAscii(asciiList: List[Char], reverse: Boolean)(brightness: Int): IO[Char] = IO (
+    asciiList <> reverse apply ((brightness / 255d * (asciiList.length - 1)).toInt)
+  )
 
 
 
