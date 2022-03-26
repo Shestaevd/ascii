@@ -10,8 +10,6 @@ import shd.asciiwebcam.functions.image.Image.{compressTo, toAsciiSequence}
 import shd.asciiwebcam.functions.rich.Rich.RichInt
 import shd.asciiwebcam.functions.webcam.Webcam.{webcamGrabber, webcamImage}
 
-import scala.annotation.tailrec
-
 object Launcher extends IOApp {
 
   def run(args: List[String]): IO[ExitCode] =
@@ -19,15 +17,15 @@ object Launcher extends IOApp {
       config <- Config.read
       terminal <- TerminalBuilder.terminal().pure[IO]
       grabber <- webcamGrabber(config.device)
-      _ <- IO.whenA(cond = true)(tick(config, terminal, grabber))
+      _ <- tick(config, terminal, grabber)
     } yield ExitCode.Success
 
   def tick(config: Config, terminal: Terminal, grabber: OpenCVFrameGrabber): IO[Unit] =
-    for {
+    (for {
       image <- webcamImage(grabber)
       resizedImage <- compressTo(terminal.getWidth.ifZero(config.defaultWidth), terminal.getHeight.ifZero(config.defaultHeight), image)
       asciiList <- toAsciiSequence(resizedImage, config)
       _ <- clearConsole
-    } yield printImage(terminal, asciiList)
+    } yield printImage(terminal, asciiList)) >> tick(config, terminal, grabber)
 
 }
