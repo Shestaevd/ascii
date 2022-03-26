@@ -1,7 +1,6 @@
 package shd.asciiwebcam.functions.webcam
 
 import cats.effect.IO
-import cats.implicits.catsSyntaxApplicativeId
 import org.bytedeco.javacv.{Java2DFrameConverter, OpenCVFrameGrabber}
 
 import java.awt.image.BufferedImage

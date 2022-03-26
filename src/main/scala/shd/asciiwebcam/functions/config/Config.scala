@@ -14,4 +14,4 @@ object Config {
 
 }
 
-case class Config(defaultWidth: Int, defaultHeight: Int, reverse: Boolean = false, asciiSeq: String, device: Int = 0)
+case class Config(defaultWidth: Int, defaultHeight: Int, asciiSeq: String, reverse: Boolean = false, device: Int = 0)
