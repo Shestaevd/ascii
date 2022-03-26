@@ -17,7 +17,7 @@ object Console {
     }
   )
 
-  def printImage(terminal: Terminal, asciiList: List[List[Char]]): IO[Unit] = IO {
+  def printImage(terminal: Terminal, asciiList: List[List[Char]]): Unit = {
     val writer = terminal.writer()
     asciiList.foreach { h =>
       h.foreach(w => writer.print(w))
