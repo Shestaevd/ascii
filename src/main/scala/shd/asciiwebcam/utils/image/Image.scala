@@ -10,7 +10,6 @@ import java.awt.Color
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
-import scala.util.Try
 
 object Image {
 
@@ -25,10 +24,8 @@ object Image {
   }
 
   def brightnessToAscii(asciiList: List[Char], reverse: Boolean)(brightness: Int): IO[Char] = IO (
-    asciiList <> reverse apply ((brightness / 255d * (asciiList.length - 1)).toInt)
+    asciiList <> reverse apply (brightness / 255d * (asciiList.length - 1)).toInt
   )
-
-
 
   def toAsciiSequence(resizedImage: BufferedImage, config: Config): IO[List[List[Char]]] = {
     (0 until resizedImage.getHeight map ( h =>

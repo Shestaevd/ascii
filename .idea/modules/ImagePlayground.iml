@@ -26,6 +26,7 @@
     <orderEntry type="library" name="sbt: com.outr:scribe-slf4j_2.13:3.6.8:jar" level="project" />
     <orderEntry type="library" name="sbt: com.outr:scribe_2.13:3.6.8:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe:config:1.4.1:jar" level="project" />
+    <orderEntry type="library" name="sbt: jline:jline:3.0.0.M1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.imgscalr:imgscalr-lib:4.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.jline:jline:3.21.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.scala-lang.modules:scala-collection-compat_2.13:2.6.0:jar" level="project" />
