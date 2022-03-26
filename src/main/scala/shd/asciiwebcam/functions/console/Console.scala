@@ -1,6 +1,7 @@
 package shd.asciiwebcam.functions.console
 
 import cats.effect.IO
+import org.jline.terminal.Terminal
 
 object Console {
 
@@ -16,11 +17,14 @@ object Console {
     }
   )
 
-  def printImage(asciiList: List[List[Char]]): IO[Unit] = IO(
+  def printImage(terminal: Terminal, asciiList: List[List[Char]]): IO[Unit] = IO {
+    val writer = terminal.writer()
     asciiList.foreach { h =>
-      h.foreach(w => print(w))
-      print("\n")
+      h.foreach(w => writer.print(w))
+      writer.print("\n")
     }
-  )
+    writer.flush()
+  }
+
 
 }

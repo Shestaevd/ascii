@@ -23,7 +23,7 @@ object Webcam {
       grabber
     }
 
-  def webcamImage(resource: IO[OpenCVFrameGrabber]): IO[BufferedImage] =
-    resource flatMap (_.grab().pure[IO]) flatMap (new Java2DFrameConverter().convert(_).pure[IO])
+  def webcamImage(grabber: OpenCVFrameGrabber): IO[BufferedImage] =
+    IO(new Java2DFrameConverter().convert(grabber.grab()))
 
 }
