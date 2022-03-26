@@ -14,4 +14,4 @@ object Config {
 
 }
 
-case class Config(imagePath: String, defaultWidth: Int, defaultHeight: Int, reverse: Boolean = false, asciiSeq: String = "№@964?!a;:+=-,._  ")
+case class Config(imagePath: String, defaultWidth: Int, defaultHeight: Int, reverse: Boolean = false, asciiSeq: String)

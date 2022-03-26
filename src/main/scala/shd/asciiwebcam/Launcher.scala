@@ -17,11 +17,9 @@ object Launcher extends IOApp {
       image <- readImage(config.imagePath);
       resizedImage <- compressTo(terminal.getWidth.ifEmpty(config.defaultWidth), terminal.getHeight.ifEmpty(config.defaultHeight), image);
       asciiList <- toAsciiSequence(resizedImage, config);
-      _ <- {
-          IO(asciiList.foreach { h =>
-            h.foreach(w => print(w))
-            print("\n")
-          })
-      }
+      _ <- IO(asciiList.foreach { h =>
+             h.foreach(w => print(w))
+             print("\n")
+           })
     ) yield ExitCode.Success
 }
