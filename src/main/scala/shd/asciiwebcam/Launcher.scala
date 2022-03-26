@@ -15,19 +15,19 @@ import scala.annotation.tailrec
 object Launcher extends IOApp {
 
   def run(args: List[String]): IO[ExitCode] =
-    for (
-      config <- Config.read;
-      terminal <- TerminalBuilder.terminal().pure[IO];
-      grabber <- webcamGrabber(config.device);
+    for {
+      config <- Config.read
+      terminal <- TerminalBuilder.terminal().pure[IO]
+      grabber <- webcamGrabber(config.device)
       _ <- IO.whenA(cond = true)(tick(config, terminal, grabber))
-    ) yield ExitCode.Success
+    } yield ExitCode.Success
 
   def tick(config: Config, terminal: Terminal, grabber: OpenCVFrameGrabber): IO[Unit] =
-    (for (
-      image <- webcamImage(grabber);
-      resizedImage <- compressTo(terminal.getWidth.ifZero(config.defaultWidth), terminal.getHeight.ifZero(config.defaultHeight), image);
-      asciiList <- toAsciiSequence(resizedImage, config);
+    for {
+      image <- webcamImage(grabber)
+      resizedImage <- compressTo(terminal.getWidth.ifZero(config.defaultWidth), terminal.getHeight.ifZero(config.defaultHeight), image)
+      asciiList <- toAsciiSequence(resizedImage, config)
       _ <- clearConsole
-    ) yield printImage(terminal, asciiList))
+    } yield printImage(terminal, asciiList)
 
 }
