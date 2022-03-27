@@ -1,14 +1,14 @@
 package shd.asciiwebcam
 
-import cats.effect.{ExitCode, IO, IOApp}
-import cats.implicits.catsSyntaxApplicativeId
+import cats.effect._
+import cats.implicits._
 import org.bytedeco.javacv.OpenCVFrameGrabber
-import org.jline.terminal.{Terminal, TerminalBuilder}
+import org.jline.terminal._
 import shd.asciiwebcam.functions.config.Config
-import shd.asciiwebcam.functions.console.Console.{clearConsole, printImage}
-import shd.asciiwebcam.functions.image.Image.{compressTo, toAsciiSequence}
+import shd.asciiwebcam.functions.console.Console._
+import shd.asciiwebcam.functions.image.Image._
 import shd.asciiwebcam.functions.rich.Rich.RichInt
-import shd.asciiwebcam.functions.webcam.Webcam.{webcamGrabber, webcamImage}
+import shd.asciiwebcam.functions.webcam.Webcam._
 
 object Launcher extends IOApp {
 
@@ -16,16 +16,28 @@ object Launcher extends IOApp {
     for {
       config <- Config.read
       terminal <- TerminalBuilder.terminal().pure[IO]
-      grabber <- webcamGrabber(config.device)
-      _ <- tick(config, terminal, grabber)
+
+      _ <- grabber(config.device).use(tick(config, terminal, _).foreverM)
     } yield ExitCode.Success
 
-  def tick(config: Config, terminal: Terminal, grabber: OpenCVFrameGrabber): IO[Unit] =
-    (for {
+  def tick(
+      config: Config,
+      terminal: Terminal,
+      grabber: OpenCVFrameGrabber
+  ): IO[Unit] =
+    for {
       image <- webcamImage(grabber)
-      resizedImage <- compressTo(terminal.getWidth.ifZero(config.defaultWidth), terminal.getHeight.ifZero(config.defaultHeight), image)
+
+      resizedImage <- compressTo(
+        terminal.getWidth.ifZero(config.defaultWidth),
+        terminal.getHeight.ifZero(config.defaultHeight),
+        image
+      )
+
       asciiList <- toAsciiSequence(resizedImage, config)
+
+      _ <- printImage(terminal, asciiList)
       _ <- clearConsole
-    } yield printImage(terminal, asciiList)) >> tick(config, terminal, grabber)
+    } yield ()
 
 }
