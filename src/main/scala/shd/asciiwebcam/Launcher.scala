@@ -36,8 +36,8 @@ object Launcher extends IOApp {
 
       asciiList <- toAsciiSequence(resizedImage, config)
 
-      _ <- printImage(terminal, asciiList)
       _ <- clearConsole
+      _ <- printImage(terminal, asciiList)
     } yield ()
 
 }
